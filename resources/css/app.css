@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Qualy-Bold';
+    src: url('../../public/fonts/Qualy-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Prompt-Regular';
+    src: url('../../public/fonts/Prompt/Prompt-Regular.ttf');
+}
+
+.v-application {
+    font-family: 'Prompt-Regular', 'Qualy-Bold', 'sans-serif' !important;
+}
+
+h1, h2, h3 {
+    font-family: 'Qualy-Bold', 'Prompt-Regular', 'sans-serif' !important;
+}
+
+a, a:hover, a:focus {
+    display: block !important;
+    text-decoration: inherit !important;
+    color: inherit !important;
+    width: 100% !important;
+}
+
+th {
+    text-align: left;
+    font-size: 12px;
+}
