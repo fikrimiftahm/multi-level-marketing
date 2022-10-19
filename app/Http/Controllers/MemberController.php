@@ -151,4 +151,30 @@ class MemberController extends Controller
             );
         }
     }
+
+    public function tree()
+    {
+        try {
+            $type = session('type', null);
+            $msg = session('message', null);
+
+            $map = $this->memberRepositoryInterface->getLeaderMemberMapAllCount();
+
+            $level2 = [];
+            for ($i = 0; $i < count($map); $i++) {
+                $map2 = $this->memberRepositoryInterface->getLeaderMemberMapCount($map[$i]->member_name);
+
+                array_push($level2, $map2);
+            }
+
+            return Inertia::render('Member/Tree', [
+                'type' => $type,
+                'message' => $msg,
+                'level1' => $map,
+                'level2' => $level2,
+            ]);
+        } catch (Exception $e) {
+            return redirect()->back()->with(['type' => 'error', 'message', $e]);
+        }
+    }
 }

@@ -9,5 +9,6 @@ interface MemberRepositoryInterface
     public function createLeader($memberId);
     public function createLeaderMember($leaderId, $memberId);
     public function getLeaderMemberMap();
+    public function getLeaderMemberMapAllCount();
     public function getLeaderMemberMapCount($name);
 }

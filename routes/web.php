@@ -41,5 +41,7 @@ Route::group(['middleware' => 'signedin'], function () {
 
         Route::get('/bonus', [MemberController::class, 'bonusIndex'])->name('member.bonus.index');
         Route::post('/bonus/submit', [MemberController::class, 'bonusSubmit'])->name('member.bonus.submit');
+
+        Route::get('/tree', [MemberController::class, 'tree'])->name('member.tree.index');
     });
 });

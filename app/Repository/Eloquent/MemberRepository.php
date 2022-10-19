@@ -135,4 +135,38 @@ class MemberRepository implements MemberRepositoryInterface
             throw $e;
         }
     }
+
+    public function getLeaderMemberMapAllCount()
+    {
+        try {
+            $query = "
+            with leaders as (
+                select m.id leader_id, m.name leader_name, lm.member_id 
+                from practice.leaders l
+                left join practice.leaders_members lm 
+                on l.member_id = lm.leader_id
+                left join practice.members m
+                on m.id = lm.leader_id 
+            ), mlm as (
+                select l.*, me.name member_name
+                from leaders l
+                left join practice.members me 
+                on l.member_id = me.id
+                order by 1 asc, 3 asc
+            ), smr as (
+                select leader_name, member_name, count(member_name) total
+                from mlm
+                group by 1, 2
+                order by 1 asc, 2 asc
+            )
+            select *
+            from smr;";
+            
+            $map = DB::select(DB::raw($query));
+
+            return $map;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }
